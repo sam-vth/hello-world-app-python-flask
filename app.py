@@ -306,7 +306,7 @@ def index():
     # Render page
     context = dict()
     context['products'] = products
-    context['productsv3'] = json.loads(products_from_v3.json())
+    context['productsv3'] = products_from_v3.json()
     context['user'] = user
     context['store'] = store
     context['client_id'] = client_id()
