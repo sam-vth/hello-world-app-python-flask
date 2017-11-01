@@ -322,7 +322,7 @@ def instructions():
     return render('instructions.html', context)
 
 @app.route('/infintescroll')
-def infintescroll:
+def infintescroll():
     context = dict()
     return render('infinitescroll.html', context)
 
