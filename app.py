@@ -3,6 +3,7 @@ import dotenv
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
+import requests
 import os
 
 # do __name__.split('.')[0] if initialising from a file not at project root
@@ -287,6 +288,14 @@ def index():
     client = BigcommerceApi(client_id=client_id(),
                             store_hash=store.store_hash,
                             access_token=store.access_token)
+
+    # Construct V3 api client header
+    headers = {
+        'X-Auth-Client': client_id(),
+        'X-Auth-Token': store.access_token,
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+    }
 
     # Fetch a few products
     products = client.Products.all(limit=10)
