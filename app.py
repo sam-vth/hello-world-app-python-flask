@@ -6,9 +6,11 @@ from sqlalchemy.orm import relationship
 import requests
 import os
 import json
+from flask_cors import CORS
 
 # do __name__.split('.')[0] if initialising from a file not at project root
 app = flask.Flask(__name__)
+CORS(app)
 
 # Look for a .env file
 if os.path.exists('.env'):
