@@ -321,6 +321,11 @@ def instructions():
     context = dict()
     return render('instructions.html', context)
 
+@app.route('/infintescroll')
+def infintescroll:
+    context = dict()
+    return render('infinitescroll.html', context)
+
 
 if __name__ == "__main__":
     db.create_all()
