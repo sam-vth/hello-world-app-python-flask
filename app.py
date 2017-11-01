@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 import requests
 import os
+import json
 
 # do __name__.split('.')[0] if initialising from a file not at project root
 app = flask.Flask(__name__)
@@ -305,7 +306,7 @@ def index():
     # Render page
     context = dict()
     context['products'] = products
-    context['productsv3'] = products_from_v3.json()
+    context['productsv3'] = json.loads(products_from_v3.json())
     context['user'] = user
     context['store'] = store
     context['client_id'] = client_id()
