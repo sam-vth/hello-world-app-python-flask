@@ -300,7 +300,7 @@ def index():
         'Content-Type':'application/json'
     }
 
-    products_from_v3 = requests.get('https://api.bigcommerce.com/stores/nhkg0zq/v3/catalog/products/categories:in=23', headers=headers)
+    products_from_v3 = requests.get('https://api.bigcommerce.com/stores/nhkg0zq/v3/catalog/products', headers=headers)
 
     # Fetch a few products
     products = client.Products.all(limit=10)
