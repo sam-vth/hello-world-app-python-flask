@@ -36,9 +36,9 @@
 
       <h2>Products from V3</h2>
       <ul>
-        {{#each products}}
-            <li>{{name}}</li>
-        {{/each}}
+        {% for p in productsv3 %}
+          <li>{{ p }}</li>
+        {% endfor %}
       </ul>
 
       <hr/>
