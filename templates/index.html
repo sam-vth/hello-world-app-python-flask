@@ -36,8 +36,8 @@
 
       <h2>Products from V3</h2>
       <ul>
-        {% for p in productsv3 %}
-          <li>{{ p }}</li>
+        {% for product in productsv3 %}
+          <li>{{ product.name }}</li>
         {% endfor %}
       </ul>
 
@@ -45,7 +45,7 @@
           Raw JSON
       </h3>
       <p>
-          {{ productsv3 }}
+          {{ productsv3 }
       </p>
 
       <hr/>
