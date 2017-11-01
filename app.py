@@ -297,12 +297,14 @@ def index():
         'Content-Type':'application/json'
     }
 
+    products_from_v3 = requests.get('https://api.bigcommerce.com/stores/nhkg0zq/v3/catalog/products', headers=headers)
+
     # Fetch a few products
     products = client.Products.all(limit=10)
 
     # Render page
     context = dict()
-    context['products'] = products
+    context['products'] = products_from_v3
     context['user'] = user
     context['store'] = store
     context['client_id'] = client_id()
