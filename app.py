@@ -3,7 +3,6 @@ import dotenv
 import flask
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
-import requests
 import os
 
 # do __name__.split('.')[0] if initialising from a file not at project root
@@ -23,7 +22,7 @@ app.config['APP_CLIENT_SECRET'] = os.getenv('APP_CLIENT_SECRET')
 app.config['SESSION_SECRET'] = os.getenv('SESSION_SECRET', os.urandom(64))
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///data/hello_world.sqlite')
 app.config['SQLALCHEMY_ECHO'] = app.config['DEBUG']
-app.config['v3headers'] = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+
 # Setup secure cookie secret
 app.secret_key = app.config['SESSION_SECRET']
 
@@ -283,7 +282,6 @@ def index():
         return "Not logged in!", 401
     store = storeuser.store
     user = storeuser.user
-    store_hash = context.split('/')[1]
 
     # Construct api client
     client = BigcommerceApi(client_id=client_id(),
@@ -292,8 +290,6 @@ def index():
 
     # Fetch a few products
     products = client.Products.all(limit=10)
-
-    cart_items = requests.get('https://api.bigcommerce.com/stores/{{store_hash}}/v3/carts/', params={}, headers = headers)
 
     # Render page
     context = dict()
@@ -311,9 +307,6 @@ def instructions():
         return "Forbidden - instructions only visible in debug mode"
     context = dict()
     return render('instructions.html', context)
-
-@app.route('/clearcart')
-def clearcart():
 
 
 if __name__ == "__main__":
